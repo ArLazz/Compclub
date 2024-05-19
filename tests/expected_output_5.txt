@@ -1,0 +1,16 @@
+10:00
+09:00 1 client1
+09:00 13 NotOpenYet
+10:05 2 client1 1
+10:05 13 ClientUnknown
+19:55 4 client1
+19:55 13 ClientUnknown
+20:05 1 client2
+20:05 13 NotOpenYet
+20:10 2 client2 1
+20:10 13 ClientUnknown
+20:15 4 client2
+20:15 13 ClientUnknown
+20:00
+1 0 00:00
+2 0 00:00

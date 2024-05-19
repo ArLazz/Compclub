@@ -1,0 +1,6 @@
+FROM golang:latest
+
+COPY ./ ./
+RUN go mod download
+
+CMD ["go", "test", "-v"]]
