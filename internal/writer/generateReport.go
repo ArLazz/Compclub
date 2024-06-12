@@ -1,7 +1,7 @@
 package writer
 
 import (
-	"compclub/models"
+	"compclub/internal/models"
 	"fmt"
 )
 

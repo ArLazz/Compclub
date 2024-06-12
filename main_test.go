@@ -12,11 +12,11 @@ func TestClubTask(t *testing.T) {
 		inputFile      string
 		expectedOutput string
 	}{
-		{"tests/test_file_1.txt", "tests/expected_output_1.txt"},
-		{"tests/test_file_2.txt", "tests/expected_output_2.txt"},
-		{"tests/test_file_3.txt", "tests/expected_output_3.txt"},
-		{"tests/test_file_4.txt", "tests/expected_output_4.txt"},
-		{"tests/test_file_5.txt", "tests/expected_output_5.txt"},
+		{"internal/tests/test_file_1.txt", "internal/tests/expected_output_1.txt"},
+		{"internal/tests/test_file_2.txt", "internal/tests/expected_output_2.txt"},
+		{"internal/tests/test_file_3.txt", "internal/tests/expected_output_3.txt"},
+		{"internal/tests/test_file_4.txt", "internal/tests/expected_output_4.txt"},
+		{"internal/tests/test_file_5.txt", "internal/tests/expected_output_5.txt"},
 	}
 
 	for _, tt := range tests {

@@ -2,7 +2,7 @@ package reader
 
 import (
 	"bufio"
-	"compclub/models"
+	"compclub/internal/models"
 	"fmt"
 	"os"
 	"strconv"
@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-func ParseTime(s string) (time.Time, error) {
+func parseTime(s string) (time.Time, error) {
 	return time.Parse("15:04", s)
 }
 
@@ -20,7 +20,7 @@ func ReadInput(fileName string) (*models.Club, error) {
 		return nil, err
 	}
 	defer file.Close()
-	
+
 	scanner := bufio.NewScanner(file)
 	club := &models.Club{}
 	club.CurrentStatus = make(map[string]*models.Client)
@@ -44,13 +44,13 @@ func ReadInput(fileName string) (*models.Club, error) {
 		return nil, fmt.Errorf("error to parse opening and closing times")
 	}
 
-	club.OpenTime, err = ParseTime(times[0])
+	club.OpenTime, err = parseTime(times[0])
 	if err != nil {
 		fmt.Println(line)
 		return nil, err
 	}
 
-	club.CloseTime, err = ParseTime(times[1])
+	club.CloseTime, err = parseTime(times[1])
 	if err != nil {
 		fmt.Println(line)
 		return nil, err
@@ -70,7 +70,7 @@ func ReadInput(fileName string) (*models.Club, error) {
 		line := scanner.Text()
 		parts := strings.Split(line, " ")
 
-		eventTime, err := ParseTime(parts[0])
+		eventTime, err := parseTime(parts[0])
 		if err != nil {
 			fmt.Println(line)
 			return nil, err
@@ -82,13 +82,41 @@ func ReadInput(fileName string) (*models.Club, error) {
 			return nil, err
 		}
 
-		event := models.Event{
-			EventTime: eventTime,
-			EventType: eventType,
-			Details:   parts[2:],
+		var event models.Event
+		
+		switch eventType {
+		case 1:
+			event = &models.EvemtClientArrival{
+				Data: models.EventData{
+					EventTime: eventTime,
+					Details:   parts[2:],
+				},
+			}
+		case 2:
+			event = &models.EventCLientSit{
+				Data: models.EventData{
+					EventTime: eventTime,
+					Details:   parts[2:],
+				},
+			}
+		case 3:
+			event = &models.EventClientWait{
+				Data: models.EventData{
+					EventTime: eventTime,
+					Details:   parts[2:],
+				},
+			}
+		case 4:
+			event = &models.EventClientLeave{
+				Data: models.EventData{
+					EventTime: eventTime,
+					Details:   parts[2:],
+				},
+			}
 		}
+
 		club.Events = append(club.Events, event)
 	}
-	
+
 	return club, nil
 }

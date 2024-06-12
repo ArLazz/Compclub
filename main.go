@@ -1,9 +1,9 @@
 package main
 
 import (
-	"compclub/processor"
-	"compclub/reader"
-	"compclub/writer"
+	"compclub/internal/processor"
+	"compclub/internal/reader"
+	"compclub/internal/writer"
 	"fmt"
 	"os"
 )
